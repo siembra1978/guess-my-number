@@ -7,12 +7,23 @@ public class Main {
       Scanner input = new Scanner(System.in);
       Random random = new Random();
 
-      int guessTotal = 0;
+      int guessTotal = 1;
 
       System.out.println("I'm thinking of a random number. Guess it.");
+
+      int number = random.nextInt(101);
+      //System.out.println(number);
       
-      for (int number = random.nextInt(101); guessTotal < 11; guessTotal++ ){
+      while (guessTotal <= 10){
+
         System.out.println("Guess " + guessTotal + ":");
+
+        if (!input.hasNextInt()){
+          System.out.println("Not a valid integer.");
+          input.next();
+          continue;
+        }
+
         int guess = input.nextInt();
 
         if (guess == number){
@@ -25,6 +36,14 @@ public class Main {
         else if (guess < number){
           System.out.println("Your guess is less than my number");
         }
+
+        guessTotal++;
       }
+
+      if (guessTotal > 10){
+        System.out.println("Sorry, you failed.");
+      }
+
+      input.close();
     }
   }
